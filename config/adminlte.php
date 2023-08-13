@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Semilleros Universidad de Nariño',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -311,55 +311,6 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
         ['header' => 'Sistema de Información'],
         [
             'text' => 'Coordinador',
@@ -392,6 +343,23 @@ return [
                     'url'  => '/semillerista/registrar_info',
                 ],
             ],
+        ],
+        [
+            'text' => 'Proyectos',
+            'icon' => 'fas fa-fw fa-tasks',
+            'submenu' => [
+                [
+                    'text' => 'Proyectos Existentes',
+                    'url'  => '/proyectos/listado',
+                    'icon' => 'fas fa-fw fa-eye',
+                ],
+                [
+                    'text' => 'Crear Proyecto',
+                    'url'  => '/proyectos/registrar',
+                    'icon' => 'fas fa-fw fa-edit',
+                ],
+            ]
+            
         ],
     ],
 
