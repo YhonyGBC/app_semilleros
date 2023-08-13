@@ -311,13 +311,6 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
@@ -367,21 +360,38 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        ['header' => 'Sistema de Información'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text' => 'Coordinador',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => '/coordinador/listado',
+                ],
+                [
+                    'text' => 'Crear usuario',
+                    'url'  => '/coordinador/crear_usuario',
+                ],
+                [
+                    'text' => 'Registrar información',
+                    'url'  => '/coordinador/registrar_info',
+                ],
+            ],
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text' => 'Semillerista',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'url'  => '/semillerista/listado',
+                ],
+                [
+                    'text' => 'Registrar información',
+                    'url'  => '/semillerista/registrar_info',
+                ],
+            ],
         ],
     ],
 
