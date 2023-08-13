@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Semilleros Universidad de Nariño',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -311,6 +311,25 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        ['header' => 'Sistema de Información'],
+        [
+            'text' => 'Proyectos',
+            'icon' => 'fas fa-fw fa-tasks',
+            'submenu' => [
+                [
+                    'text' => 'Proyectos Existentes',
+                    'url'  => '/proyectos/listado',
+                    'icon' => 'fas fa-fw fa-eye',
+                ],
+                [
+                    'text' => 'Crear Proyecto',
+                    'url'  => '/proyectos/registrar',
+                    'icon' => 'fas fa-fw fa-edit',
+                ],
+            ]
+            
+        ],
+
         [
             'text'        => 'pages',
             'url'         => 'admin/pages',
