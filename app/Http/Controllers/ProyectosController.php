@@ -49,6 +49,8 @@ class ProyectosController extends Controller
         }
     }
 
+    //Función para crear el reporte PDF
+    
     public function report(){
         $proyectos = Proyecto::with('semillero')->get();
         //dd($proyectos);
