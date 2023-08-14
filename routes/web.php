@@ -18,6 +18,10 @@ use App\Http\Controllers\ProyectosController;
 |
 */
 
+/*
+Esta es una prueba de Angie.
+*/
+
 Route::get('/', function () {
     return view('welcome');
 });
