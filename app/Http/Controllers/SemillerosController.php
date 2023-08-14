@@ -6,13 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Semillero;
 
+
+
 class SemillerosController extends Controller
 {
+    // Función que retorna la vista principal de los semilleros existentes.
     public function index() {
         $semilleros = DB::table('semilleros')->get();
         return view('semilleros.listado', ['semilleros' => $semilleros]);
     }
 
+    // Función que retorna el formulario de registro de un nuevo semillero.
     public function form_registro() {
         return view('semilleros.form_registro');
     }
