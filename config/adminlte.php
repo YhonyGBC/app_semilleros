@@ -311,6 +311,23 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
+        ['header' => 'Sistema de Información'],
+        [
+            'text'    => 'Eventos',
+            'icon'    => 'fas fa-fw fa-calendar',
+            'submenu' => [
+                [
+                    'text' => 'Eventos Existentes',
+                    'url'  => '/eventos/listado',
+                    'icon' => 'fas fa-fw fa-eye',
+                ],
+                [
+                    'text' => 'Crear Evento',
+                    'url'  => '/eventos/registrar',
+                    'icon' => 'fas fa-fw fa-edit',
+                ],
+            ]
+        ],
         [
             'text'        => 'pages',
             'url'         => 'admin/pages',
