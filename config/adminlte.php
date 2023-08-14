@@ -345,6 +345,22 @@ return [
             ],
         ],
         [
+            'text' => 'Semillero',
+            'icon' => 'fas fa-fw fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Listado',
+                    'icon' => 'fas fa-fw fa-eye',
+                    'url'  => '/semillero/listado',
+                ],
+                [
+                    'text' => 'Registrar información',
+                    'icon' => 'fas fa-fw fa-edit',
+                    'url'  => '/semillero/registrar_info',
+                ],
+            ],
+        ],
+        [
             'text' => 'Proyectos',
             'icon' => 'fas fa-fw fa-tasks',
             'submenu' => [
