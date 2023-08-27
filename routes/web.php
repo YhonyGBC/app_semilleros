@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\EventosController;
 use App\Http\Controllers\Coordinadores;
 use App\Http\Controllers\Semilleristas;
 use App\Http\Controllers\SemillerosController;
@@ -18,11 +19,21 @@ use App\Http\Controllers\ProyectosController;
 |
 */
 
+/*
+Esta es una prueba de Angie.
+*/
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
+Route::get('/eventos/listado', [EventosController::class, 'index'])->name('listadoEve');
+Route::get('/eventos/registrar', [EventosController::class, 'registro_form']);
+Route::post('/eventos/registrar', [EventosController::class, 'registrar_event']);
+Route::get('/eventos/eliminar/{id}', [EventosController::class, 'eliminar_event'])->name('eliminaEve');
+
 
 Route::get('/coordinador/crear_usuario', [Coordinadores::class, 'form_creacion']);
 Route::post('/coordinador/crear_usuario', [Coordinadores::class, 'crear']);
