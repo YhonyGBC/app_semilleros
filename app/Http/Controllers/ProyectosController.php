@@ -58,4 +58,43 @@ class ProyectosController extends Controller
         return $pdf->setPaper('a4','landscape')->stream('proyectos_report.pdf');
     }
 
+    public function eliminar($id){
+        $proyecto = Proyecto::findOrFail($id);
+        $proyecto->delete();
+        return redirect()->route('listadoProy');
+    }
+
+    public function form_edita($id){
+        $semilleros = Semillero::all();
+        $proyecto = Proyecto::findOrFail($id);
+        return view('proyectos.form_edita',
+            compact('proyecto'), compact('semilleros'));
+
+    }
+
+    public function actualizar(Request $p, $id){
+        if ($p->hasFile('archivo')) {
+            $archivo = $p->file('archivo');
+            
+            //dd($archivo);
+            // Almacena el archivo en public/uploads
+            $rutaDestino = $archivo->store('uploads', 'public');
+
+            // Guarda la información en la base de datos
+            $proyect = Proyecto::findOrFail($id);
+            $proyect->titulo = $p->input('inputTitle');
+            $proyect->integrantes = $p->input('inputInte');
+            $proyect->tipo_proyecto = $p->input('inputTipo');
+            $proyect->estado = $p->input('inputEstado');
+            $proyect->fecha_inicio = $p->input('inputDate_Ini');
+            $proyect->fecha_finalizacion = $p->input('inputDate_Fin');
+            $proyect->archivo_adjunto = $archivo->getClientOriginalName();
+            $proyect->semillero_id = $p->input('inputSemillero');
+            $proyect->save();
+            return redirect()->route('listadoProy');
+        } else {
+            return redirect()->back()->with('error', 'No se ha seleccionado ningún archivo.');
+        }
+    }
+
 }
