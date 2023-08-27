@@ -38,8 +38,11 @@ Route::get('/eventos/eliminar/{id}', [EventosController::class, 'eliminar_event'
 Route::get('/coordinador/crear_usuario', [Coordinadores::class, 'form_creacion']);
 Route::post('/coordinador/crear_usuario', [Coordinadores::class, 'crear']);
 Route::get('/coordinador/listado', [Coordinadores::class, 'index'])->name('list_coordinadores');
-Route::get('/coordinador/registrar_info', [Coordinadores::class, 'form_registro']);
+Route::get('/coordinador/registrar_info', [Coordinadores::class, 'form_registro'])->name('regist_coordinador');
 Route::post('/coordinador/registrar_info', [Coordinadores::class, 'registrar']);
+Route::get('/coordinador/eliminar/{id}', [Coordinadores::class, 'eliminar'])->name('elim_coordinador');
+Route::get('/coordinador/editar/{identificacion}', [Coordinadores::class, 'form_edicion']);
+Route::put('/coordinador/editar/{identificacion}', [Coordinadores::class, 'editar']);
 
 Route::get('/semillerista/listado', [Semilleristas::class, 'index'])->name('list_semilleristas');
 Route::get('/semillerista/registrar_info', [Semilleristas::class, 'form_registro']);
