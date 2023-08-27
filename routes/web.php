@@ -42,3 +42,6 @@ Route::get('/proyectos/listado', [ProyectosController::class, 'index'])->name('l
 Route::get('/proyectos/reportPDF', [ProyectosController::class, 'report'])->name('reportPDF');
 Route::get('/proyectos/registrar', [ProyectosController::class, 'form_registro']);
 Route::post('/proyectos/registrar', [ProyectosController::class, 'registrar']);
+Route::get('/proyectos/eliminar/{id}', [ProyectosController::class, 'eliminar'])->name('eliminaProy');
+Route::get('/proyectos/editar/{id}', [ProyectosController::class, 'form_edita'])->name('editaProy');
+Route::post('/proyectos/editar/{id}', [ProyectosController::class, 'actualizar'])->name('actualizar_Proy');

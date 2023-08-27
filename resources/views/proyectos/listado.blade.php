@@ -45,8 +45,8 @@
         <td>{{ $p->archivo_adjunto}}</td>
         <td>{{ $p->semillero->nombre}}</td>
         <td>
-        <a class="btn btn-primary" href="">Editar</a>
-        <a class="btn btn-danger" href="">Eliminar</a>
+        <a class="btn btn-primary" href="{{route('editaProy',$p->id)}}">Editar</a>
+        <a class="btn btn-danger" href="{{route('eliminaProy',$p->id)}}">Eliminar</a>
         </td>
         </tr>
         @endforeach
