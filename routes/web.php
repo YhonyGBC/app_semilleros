@@ -47,6 +47,9 @@ Route::put('/coordinador/editar/{identificacion}', [Coordinadores::class, 'edita
 Route::get('/semillerista/listado', [Semilleristas::class, 'index'])->name('list_semilleristas');
 Route::get('/semillerista/registrar_info', [Semilleristas::class, 'form_registro']);
 Route::post('/semillerista/registrar_info', [Semilleristas::class, 'registrar']);
+Route::get('/semillerista/eliminar/{id}', [Semilleristas::class, 'eliminar'])->name('elim_semillerista');
+Route::get('/semillerista/editar/{identificacion}', [Semilleristas::class, 'form_edicion']);
+Route::put('/semillerista/editar/{identificacion}', [Semilleristas::class, 'editar']);
 
 Route::get('/semillero/listado', [SemillerosController::class, 'index'])->name('list_semilleros');
 Route::get('/semillero/registrar_info', [SemillerosController::class, 'form_registro']);
