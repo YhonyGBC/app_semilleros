@@ -9,6 +9,12 @@
 @section('content')
     <p>Módulo de creación del usuario del coordinador.</p>
 
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <div class="row">
         <div class="col-md-6">
             <div class="box">
@@ -17,7 +23,9 @@
                         @csrf
                         <div class="form-group">
                             <label for="identificacion">Identificación</label>
-                            <input type="text" name="identificacion" id="identificacion" class="form-control" required>
+                            <input type="text" name="identificacion" id="identificacion" class="form-control" 
+                                pattern="[0-9]{8,}" required>
+                            <small>La identificación debe tener al menos 8 dígitos.</small>
                         </div>
                         <div class="form-group">
                             <label for="clave">Clave</label>

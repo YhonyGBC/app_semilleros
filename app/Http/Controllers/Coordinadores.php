@@ -24,6 +24,14 @@ class Coordinadores extends Controller
 
 
     public function crear(Request $r) {
+        $identificacion = $r->input('identificacion');
+
+        $existenciaIdentificacion = Usuario::where('identificacion', $identificacion)->exists();
+
+        if ($existenciaIdentificacion) {
+            return redirect()->back()->with('error', 'La identificación ya está registrada.');
+        }
+
         $usuario = new Usuario();
         $usuario->identificacion = $r->input('identificacion');
         $usuario->clave = bcrypt($r->input('clave')); // Se utiliza bcrypt para encriptar la contraseña
@@ -37,6 +45,26 @@ class Coordinadores extends Controller
     }
 
     public function registrar(Request $r) {
+        $identificacion = $r->input('identificacion');
+        $telefono = $r->input('telefono');
+        $correo = $r->input('correo');
+
+        $existenciaIdentificacion = Coordinador::where('identificacion', $identificacion)->exists();
+        $existenciaTelefono = Coordinador::where('telefono', $telefono)->exists();
+        $existenciaCorreo = Coordinador::where('correo', $correo)->exists();
+
+        if ($existenciaIdentificacion) {
+            return redirect()->back()->with('error', 'La identificación ya está registrada.');
+        }
+
+        if ($existenciaTelefono) {
+            return redirect()->back()->with('error', 'El teléfono ya está registrado.');
+        }
+
+        if ($existenciaCorreo) {
+            return redirect()->back()->with('error', 'El correo ya está registrado.');
+        }
+        
         $coordinador = new Coordinador();
         $coordinador->nombre = $r->input('nombre');
         $coordinador->identificacion = $r->input('identificacion');
@@ -76,6 +104,23 @@ class Coordinadores extends Controller
         ->join('semilleros', 'coordinadores.semillero_id', '=', 'semilleros.id')
         ->select('coordinadores.*', 'semilleros.nombre as nombre_semillero')
         ->first();
+
+        $telefonoNuevo = $r->input('telefono');
+        $correoNuevo = $r->input('correo');
+
+        if ($telefonoNuevo !== $coordinador->telefono) {
+            $existenciaTelefono = Coordinador::where('telefono', $telefonoNuevo)->exists();
+            if ($existenciaTelefono) {
+                return redirect()->back()->with('error', 'El teléfono ya está registrado.');
+            }
+        }
+
+        if ($correoNuevo !== $coordinador->correo) {
+            $existenciaCorreo = Coordinador::where('correo', $correoNuevo)->exists();
+            if ($existenciaCorreo) {
+                return redirect()->back()->with('error', 'El correo ya está registrado.');
+            }
+        }
 
         if(!$coordinador) {
             return redirect()->route('list_coordinadores');
