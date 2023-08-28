@@ -32,7 +32,7 @@
         <!-- <th scope="row">{{ $num + 1}}</th> -->
         <td>{{ $p->id}}</td>
         <td>{{ $p->titulo}}</td>
-        <td>{{ $p->integrantes}}</td>
+        <td>{{ $p->participante}}</td>
         <td>{{ $p->tipo_proyecto}}</td>
         <td>{{ $p->estado}}</td>
         <td>{{ $p->fecha_inicio}}</td>
