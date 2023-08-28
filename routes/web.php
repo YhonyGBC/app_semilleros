@@ -55,10 +55,11 @@ Route::get('/semillero/listado', [SemillerosController::class, 'index'])->name('
 Route::get('/semillero/registrar_info', [SemillerosController::class, 'form_registro']);
 Route::post('/semillero/registrar_info', [SemillerosController::class, 'registrar']);
 
-/* Sprint 2 - Juan Guzmán*/
+/* Inicio Sprint 2 - Juan Guzmán*/
 Route::get('/semillero/eliminar/{id}', [SemillerosController::class, 'eliminar'])->name('elim_semillero');
 Route::get('/semillero/editar/{nombre}', [SemillerosController::class, 'form_edicion']);
 Route::put('/semillero/editar/{nombre}', [SemillerosController::class, 'editar']);
+/* Fin Sprint 2 - Juan Guzmán*/
 
 Route::get('/proyectos/listado', [ProyectosController::class, 'index'])->name('listadoProy');
 Route::get('/proyectos/reportPDF', [ProyectosController::class, 'report'])->name('reportPDF');

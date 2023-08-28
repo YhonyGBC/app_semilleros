@@ -45,7 +45,7 @@ class SemillerosController extends Controller
         $semillero->objetivos = $r->input('objetivos');
         $semillero->lineas_investigacion = $r->input('lineas_investigacion');
         $semillero->save();
-        return redirect()->route('home');
+        return redirect()->route('list_semilleros');
     }
 
     /* Sprint 2 - Juan Guzmán */
