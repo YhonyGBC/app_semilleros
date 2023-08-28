@@ -15,7 +15,7 @@
                 <div class="box-body">
                     <form action="{{url('semillero/registrar_info')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-
+ 
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" required>

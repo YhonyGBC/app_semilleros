@@ -9,6 +9,12 @@
 @section('content')
     <p>Módulo de listado de semilleros.</p>
 
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <a class="btn btn-success" href="/semillero/registrar_info">Adicionar</a>
     <table class="table">
         <thead>
@@ -53,8 +59,8 @@
                 <td>{{ $semillero->objetivos }}</td>
                 <td>{{ $semillero->lineas_investigacion }}</td>
                 <td>
-                    <a class="btn btn-primary" href="">Editar</a>
-                    <a class="btn btn-danger" href="">Eliminar</a>
+                    <a class="btn btn-primary" href="/semillero/editar/{{$semillero->nombre}}">Editar</a>
+                    <a class="btn btn-danger" href="{{route('elim_semillero', $semillero->id)}}">Eliminar</a>
                 </td>
             </tr>
             @php
