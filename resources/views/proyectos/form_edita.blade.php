@@ -70,6 +70,41 @@
                 @endforeach
             </select>
         </div>
+        <div class="col-md-6">
+            <label for="exampleFormControlTextarea1" class="form-label">Estudiantes</label>
+            <input type="text" class="form-control" id="selectedStudentsTextArea" name="selected_students" readonly>
+        </div>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Añadir</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Identificación</th>
+                    <th scope="col">Código Estudiante</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Semestre</th>
+                    <th scope="col">Programa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($semilleristas as $semillerista)
+                <tr>
+                    <td>
+                        <input type="checkbox" value="{{ $semillerista->nombre }}" id="flexCheckDefault">
+                    </td>
+                    <td>{{ $semillerista->nombre }}</td>
+                    <td>{{ $semillerista->identificacion }}</td>
+                    <td>{{ $semillerista->cod_estudiante }}</td>
+                    <td>{{ $semillerista->telefono }}</td>
+                    <td>{{ $semillerista->correo }}</td>
+                    <td>{{ $semillerista->semestre }}</td>
+                    <td>{{ $semillerista->prog_academico }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
         <br><br><br>
         <div class="col-md-2">
             <button type="submit" class="btn btn-primary">Actualizar</button>
@@ -94,5 +129,46 @@
             label.innerText = fileName;
         });
     </script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        var $selectedStudents = $("input[type='checkbox']");
+        var $selectIntegrantes = $("#inputInte");
+        var $selectedStudentsTextArea = $("#selectedStudentsTextArea");
+
+        $selectedStudents.prop('disabled', true); // Deshabilitar inicialmente los checkboxes
+
+        $selectIntegrantes.on('change', function() {
+            var cantidadElegida = parseInt($(this).val());
+            $selectedStudents.prop('checked', false).prop('disabled', true);
+            $selectedStudentsTextArea.val(""); // Limpiar el campo de texto
+
+            if (cantidadElegida > 0) {
+                $selectedStudents.prop('disabled', false); // Habilitar checkboxes si el número es válido
+            }
+
+            $selectedStudents.off(); // Eliminar eventos previos para evitar duplicados
+
+            $selectedStudents.on('change', function() {
+                var estudiantesSeleccionados = $selectedStudents.filter(':checked');
+
+                if (estudiantesSeleccionados.length >= cantidadElegida) {
+                    $selectedStudents.not(':checked').prop('disabled', true);
+                } else {
+                    $selectedStudents.prop('disabled', false);
+                }
+
+                var selectedStudentNames = estudiantesSeleccionados.map(function() {
+                    return $(this).val();
+                }).get().join(', ');
+
+                $selectedStudentsTextArea.val(selectedStudentNames);
+            });
+        });
+    });
+    </script>
+
     <script src="{{ asset('js/funciones.js') }}"></script>
 @stop

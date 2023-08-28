@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Proyecto;
 use App\Models\Semillero;
+use App\Models\Semillerista;
 
 class ProyectosController extends Controller
 {
@@ -18,7 +19,8 @@ class ProyectosController extends Controller
 
     public function form_registro(){
         $semilleros = Semillero::all();
-        return view('proyectos.form_registro', compact('semilleros'));
+        $semilleristas = Semillerista::all();
+        return view('proyectos.form_registro', compact('semilleros'), compact('semilleristas'));
     }
 
     public function registrar(Request $r){
@@ -42,6 +44,7 @@ class ProyectosController extends Controller
             $proyectos->fecha_finalizacion = $r->input('inputDate_Fin');
             $proyectos->archivo_adjunto = $archivo->getClientOriginalName();
             $proyectos->semillero_id = $r->input('inputSemillero');
+            $proyectos->participante = $r->input('selected_students');
             $proyectos->save();
             return redirect()->route('listadoProy');
         } else {
@@ -66,9 +69,10 @@ class ProyectosController extends Controller
 
     public function form_edita($id){
         $semilleros = Semillero::all();
+        $semilleristas = Semillerista::all();
         $proyecto = Proyecto::findOrFail($id);
         return view('proyectos.form_edita',
-            compact('proyecto'), compact('semilleros'));
+            compact('proyecto', 'semilleros', 'semilleristas'));
 
     }
 
@@ -90,6 +94,7 @@ class ProyectosController extends Controller
             $proyect->fecha_finalizacion = $p->input('inputDate_Fin');
             $proyect->archivo_adjunto = $archivo->getClientOriginalName();
             $proyect->semillero_id = $p->input('inputSemillero');
+            $proyect->participante = $p->input('selected_students');
             $proyect->save();
             return redirect()->route('listadoProy');
         } else {
