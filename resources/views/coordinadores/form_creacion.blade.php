@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <p>Módulo de creación del usuario del coordinador.</p>
+    <p>Módulo de creación del usuario (coordinador, semillerista).</p>
 
     @if(session('error'))
     <div class="alert alert-danger">

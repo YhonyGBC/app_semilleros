@@ -23,12 +23,16 @@
 
                         <div class="form-group">
                             <label for="identificacion">Identificación</label>
-                            <input type="text" class="form-control" id="identificacion" name="identificacion" required>
+                            <input type="text" class="form-control" id="identificacion" name="identificacion" 
+                                pattern="[0-9]{8,}" required>
+                            <small>La identificación debe tener al menos 8 dígitos.</small>
                         </div>
 
                         <div class="form-group">
                             <label for="cod_estudiante">Código de Estudiante</label>
-                            <input type="text" class="form-control" id="cod_estudiante" name="cod_estudiante">
+                            <input type="text" class="form-control" id="cod_estudiante" name="cod_estudiante"
+                                pattern="[0-9]{9}" required>
+                            <small>El código de estudiante debe tener 9 dígitos.</small>
                         </div>
 
                         <div class="form-group">
@@ -38,7 +42,9 @@
 
                         <div class="form-group">
                             <label for="telefono">Teléfono</label>
-                            <input type="text" class="form-control" id="telefono" name="telefono">
+                            <input type="text" class="form-control" id="telefono" name="telefono"
+                                pattern="[0-9]{10}">
+                            <small>El teléfono debe tener 10 dígitos.</small>
                         </div>
 
                         <div class="form-group">
@@ -57,7 +63,7 @@
 
                         <div class="form-group">
                             <label for="fecha_nacimiento">Fecha de Nacimiento</label>
-                            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+                            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
                         </div>
 
                         <div class="form-group">
@@ -72,7 +78,7 @@
 
                         <div class="form-group">
                             <label for="semillero_id">Semillero</label>
-                            <select class="form-control" id="semillero_id" name="semillero_id">
+                            <select class="form-control" id="semillero_id" name="semillero_id" required>
                                 <option value="">Seleccione un semillero</option>
                                 @foreach($semilleros as $semillero)
                                     <option value="{{ $semillero->id }}">{{ $semillero->nombre }}</option>

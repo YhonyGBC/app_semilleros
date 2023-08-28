@@ -39,7 +39,8 @@
         <div class="mb-3">
             <label for="telefono" class="form-label">Teléfono</label>
             <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el teléfono"
-                   value="{{ $semillerista->telefono }}" required>
+                   value="{{ $semillerista->telefono }}" pattern="[0-9]{10}" required>
+            <small>El teléfono debe tener 10 dígitos.</small>
         </div>
         
         <div class="mb-3">

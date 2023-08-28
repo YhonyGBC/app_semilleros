@@ -35,7 +35,7 @@ Route::post('/eventos/registrar', [EventosController::class, 'registrar_event'])
 Route::get('/eventos/eliminar/{id}', [EventosController::class, 'eliminar_event'])->name('eliminaEve');
 
 
-Route::get('/coordinador/crear_usuario', [Coordinadores::class, 'form_creacion']);
+Route::get('/coordinador/crear_usuario', [Coordinadores::class, 'form_creacion'])->name('regist_usuario');
 Route::post('/coordinador/crear_usuario', [Coordinadores::class, 'crear']);
 Route::get('/coordinador/listado', [Coordinadores::class, 'index'])->name('list_coordinadores');
 Route::get('/coordinador/registrar_info', [Coordinadores::class, 'form_registro'])->name('regist_coordinador');

@@ -36,7 +36,7 @@ class Coordinadores extends Controller
         $usuario->identificacion = $r->input('identificacion');
         $usuario->clave = bcrypt($r->input('clave')); // Se utiliza bcrypt para encriptar la contraseña
         $usuario->save();
-        return redirect()->route('regist_coordinador');
+        return redirect()->route('regist_usuario');
     }
         
     public function form_registro() {
