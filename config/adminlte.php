@@ -313,16 +313,22 @@ return [
         ],
         ['header' => 'Sistema de Información'],
         [
+            'text' => 'Usuario',
+            'icon' => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Crear usuario',
+                    'url'  => '/coordinador/crear_usuario',
+                ],
+            ],
+        ],
+        [
             'text' => 'Coordinador',
             'icon' => 'fas fa-fw fa-user',
             'submenu' => [
                 [
                     'text' => 'Listado',
                     'url'  => '/coordinador/listado',
-                ],
-                [
-                    'text' => 'Crear usuario',
-                    'url'  => '/coordinador/crear_usuario',
                 ],
                 [
                     'text' => 'Registrar información',

@@ -36,7 +36,7 @@ class Coordinadores extends Controller
         $usuario->identificacion = $r->input('identificacion');
         $usuario->clave = bcrypt($r->input('clave')); // Se utiliza bcrypt para encriptar la contraseña
         $usuario->save();
-        return redirect()->route('regist_coordinador');
+        return redirect()->route('regist_usuario');
     }
         
     public function form_registro() {
@@ -49,6 +49,13 @@ class Coordinadores extends Controller
         $telefono = $r->input('telefono');
         $correo = $r->input('correo');
 
+        // Primera validación
+        $existenciaIdentificacion = Usuario::where('identificacion', $identificacion)->exists();
+        if (!$existenciaIdentificacion) {
+            return redirect()->back()->with('error', 'No existe ningún usuario con esa identificación.');
+        }
+
+        // Segundas validaciones
         $existenciaIdentificacion = Coordinador::where('identificacion', $identificacion)->exists();
         $existenciaTelefono = Coordinador::where('telefono', $telefono)->exists();
         $existenciaCorreo = Coordinador::where('correo', $correo)->exists();
