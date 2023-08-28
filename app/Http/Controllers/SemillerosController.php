@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Semillero;
 use App\Models\Semillerista; /*Importación del modelo semillerista para la edición de datos en el Sprint 2 - Juan Guzmán*/
+use App\Models\Coordinador; /* Importación del modelo Coordinador para la edición de datos en el Sprint 2 - Juan Guzmán */
 
 
 
