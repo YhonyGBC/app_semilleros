@@ -9,6 +9,12 @@
 @section('content')
     <p>Módulo de edición de información del semillerista.</p>
 
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <form action="{{ url('semillerista/editar/' . $semillerista->identificacion) }}" method="POST">
         @csrf
         @method('PUT')

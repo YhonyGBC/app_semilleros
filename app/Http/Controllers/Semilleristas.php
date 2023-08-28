@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Semillerista;
+use App\Models\Usuario;
  
 class Semilleristas extends Controller
 {   
@@ -23,6 +24,40 @@ class Semilleristas extends Controller
     }
 
     public function registrar(Request $r) {
+        $identificacion = $r->input('identificacion');
+        $cod_estudiante = $r->input('cod_estudiante');
+        $telefono = $r->input('telefono');
+        $correo = $r->input('correo');
+
+        // Primera validación
+        $existenciaIdentificacion = Usuario::where('identificacion', $identificacion)->exists();
+        if (!$existenciaIdentificacion) {
+            return redirect()->back()->with('error', 'No existe ningún usuario con esa identificación.');
+        }
+
+        // Segundas validaciones
+        $existenciaIdentificacion = Semillerista::where('identificacion', $identificacion)->exists();
+        $existenciaCodEstudiante = Semillerista::where('cod_estudiante', $cod_estudiante)->exists();
+        $existenciaTelefono = Semillerista::where('telefono', $telefono)->exists();
+        $existenciaCorreo = Semillerista::where('correo', $correo)->exists();
+
+        if ($existenciaIdentificacion) {
+            return redirect()->back()->with('error', 'La identificación ya está registrada.');
+        }
+
+        if ($existenciaCodEstudiante) {
+            return redirect()->back()->with('error', 'El código de estudiante ya está registrado.');
+        }
+
+        if ($existenciaTelefono) {
+            return redirect()->back()->with('error', 'El teléfono ya está registrado.');
+        }
+
+        if ($existenciaCorreo) {
+            return redirect()->back()->with('error', 'El correo ya está registrado.');
+        }
+
+
         $semillerista = new Semillerista();
         $semillerista->nombre = $r->input('nombre');
         $semillerista->identificacion = $r->input('identificacion');
@@ -63,6 +98,23 @@ class Semilleristas extends Controller
         ->join('semilleros', 'semilleristas.semillero_id', '=', 'semilleros.id')
         ->select('semilleristas.*', 'semilleros.nombre as nombre_semillero')
         ->first();
+
+        $telefonoNuevo = $r->input('telefono');
+        $correoNuevo = $r->input('correo');
+
+        if ($telefonoNuevo !== $semillerista->telefono) {
+            $existenciaTelefono = Semillerista::where('telefono', $telefonoNuevo)->exists();
+            if ($existenciaTelefono) {
+                return redirect()->back()->with('error', 'El teléfono ya está registrado.');
+            }
+        }
+
+        if ($correoNuevo !== $semillerista->correo) {
+            $existenciaCorreo = Semillerista::where('correo', $correoNuevo)->exists();
+            if ($existenciaCorreo) {
+                return redirect()->back()->with('error', 'El correo ya está registrado.');
+            }
+        }
 
         if(!$semillerista) {
             return redirect()->route('list_semilleristas');

@@ -9,6 +9,12 @@
 @section('content')
     <p>Módulo de registro de información del semillerista.</p>
 
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <div class="row">
         <div class="col-md-6">
             <div class="box">

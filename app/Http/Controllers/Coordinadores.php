@@ -49,6 +49,13 @@ class Coordinadores extends Controller
         $telefono = $r->input('telefono');
         $correo = $r->input('correo');
 
+        // Primera validación
+        $existenciaIdentificacion = Usuario::where('identificacion', $identificacion)->exists();
+        if (!$existenciaIdentificacion) {
+            return redirect()->back()->with('error', 'No existe ningún usuario con esa identificación.');
+        }
+
+        // Segundas validaciones
         $existenciaIdentificacion = Coordinador::where('identificacion', $identificacion)->exists();
         $existenciaTelefono = Coordinador::where('telefono', $telefono)->exists();
         $existenciaCorreo = Coordinador::where('correo', $correo)->exists();
