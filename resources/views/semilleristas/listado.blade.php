@@ -47,8 +47,8 @@
                 <td>{{ $semillerista->prog_academico }}</td>
                 <td>{{ $semillerista->nombre_semillero }}</td>
                 <td>
-                    <a class="btn btn-primary" href="">Editar</a>
-                    <a class="btn btn-danger" href="">Eliminar</a>
+                    <a class="btn btn-primary" href="/semillerista/editar/{{$semillerista->identificacion}}">Editar</a>
+                    <a class="btn btn-danger" href="{{route('elim_semillerista', $semillerista->id)}}">Eliminar</a>
                 </td>
             </tr>
             @php

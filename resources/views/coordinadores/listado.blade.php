@@ -44,9 +44,9 @@
                 <td>{{ $coordinador->prog_academico }}</td>
                 <td>{{ $coordinador->areas_conocimiento }}</td>
                 <td>{{ $coordinador->nombre_semillero}}</td>
-                <td>
-                    <a class="btn btn-primary" href="">Editar</a>
-                    <a class="btn btn-danger" href="">Eliminar</a>
+                <td> 
+                    <a class="btn btn-primary" href="/coordinador/editar/{{$coordinador->identificacion}}">Editar</a>
+                    <a class="btn btn-danger" href="{{route('elim_coordinador', $coordinador->id)}}">Eliminar</a>
                 </td>
             </tr>
             @php
